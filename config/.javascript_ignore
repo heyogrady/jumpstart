@@ -1,0 +1,4 @@
+vendor/**
+app/assets/javascripts/flat-ui/**
+app/assets/javascripts/flat-ui-custom/**
+app/assets/javascripts/third-party/**

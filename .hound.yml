@@ -1,0 +1,7 @@
+ruby:
+  enabled: true
+  config_file: config/.rubocop-hound.yml
+
+java_script:
+  config_file: config/.jshint.json
+  ignore_file: config/.javascript_ignore
