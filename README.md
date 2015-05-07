@@ -1,7 +1,9 @@
 # jumpstart
 Rails starter template
 
+[![Code Climate](https://codeclimate.com/github/heyogrady/jumpstart/badges/gpa.svg)](https://codeclimate.com/github/heyogrady/jumpstart)
 
+[![Test Coverage](https://codeclimate.com/github/heyogrady/jumpstart/badges/coverage.svg)](https://codeclimate.com/github/heyogrady/jumpstart/coverage)
 
 #### Setup
 
