@@ -7,21 +7,23 @@ class User < ActiveRecord::Base
 
   mount_uploader :profile_image, ProfileImageUploader
 
-  before_save :ensure_authentication_token_is_present
+  has_many :subscriptions, dependent: :destroy
 
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
 
+  before_save :ensure_authentication_token_is_present
+
   def name
-    [first_name, last_name].join(' ').strip
+    [first_name, last_name].join(" ").strip
   end
 
   def super_admin?
-    role == 'super_admin'
+    role == "super_admin"
   end
 
-  def as_json( options = {} )
-    new_options = options.merge({ only: [:email, :first_name, :last_name, :current_sign_in_at] })
+  def as_json(options={})
+    new_options = options.merge(only: [:email, :first_name, :last_name, :current_sign_in_at])
 
     super new_options
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225143027) do
+ActiveRecord::Schema.define(version: 20150507225835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,19 @@ ActiveRecord::Schema.define(version: 20140225143027) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "user_id"
+    t.date    "deactivated_on"
+    t.date    "scheduled_for_cancellation_on"
+    t.integer "plan_id"
+    t.string  "plan_type",                     default: "IndividualPlan", null: false
+    t.decimal "next_payment_amount",           default: 0.0,              null: false
+    t.date    "next_payment_on"
+    t.string  "stripe_id"
+  end
+
+  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",         null: false
     t.string   "encrypted_password",     default: "",         null: false
@@ -65,9 +78,11 @@ ActiveRecord::Schema.define(version: 20140225143027) do
     t.string   "role",                   default: "standard"
     t.string   "authentication_token"
     t.string   "profile_image"
+    t.string   "stripe_customer_id",     default: "",         null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "subscriptions", "users"
 end

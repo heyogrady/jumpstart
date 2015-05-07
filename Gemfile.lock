@@ -32,6 +32,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    CFPropertyList (2.3.0)
     actionmailer (4.2.0)
       actionpack (= 4.2.0)
       actionview (= 4.2.0)
@@ -95,6 +96,9 @@ GEM
       thor
     browser (0.8.0)
     builder (3.2.2)
+    bullet (4.14.4)
+      activesupport (>= 3.0.0)
+      uniform_notifier (>= 1.6.0)
     bundler-audit (0.3.1)
       bundler (~> 1.2)
       thor (~> 0.18)
@@ -165,9 +169,92 @@ GEM
       activemodel
     erubis (2.7.0)
     eventmachine (1.0.7)
+    excon (0.44.4)
     execjs (2.4.0)
     ffi (1.9.8)
+    fission (0.5.0)
+      CFPropertyList (~> 2.2)
     flutie (2.0.0)
+    fog (1.28.0)
+      fog-atmos
+      fog-aws (~> 0.0)
+      fog-brightbox (~> 0.4)
+      fog-core (~> 1.27, >= 1.27.3)
+      fog-ecloud
+      fog-json
+      fog-profitbricks
+      fog-radosgw (>= 0.0.2)
+      fog-riakcs
+      fog-sakuracloud (>= 0.0.4)
+      fog-serverlove
+      fog-softlayer
+      fog-storm_on_demand
+      fog-terremark
+      fog-vmfusion
+      fog-voxel
+      fog-xml (~> 0.1.1)
+      ipaddress (~> 0.5)
+      nokogiri (~> 1.5, >= 1.5.11)
+    fog-atmos (0.1.0)
+      fog-core
+      fog-xml
+    fog-aws (0.1.1)
+      fog-core (~> 1.27)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+      ipaddress (~> 0.8)
+    fog-brightbox (0.7.1)
+      fog-core (~> 1.22)
+      fog-json
+      inflecto (~> 0.0.2)
+    fog-core (1.29.0)
+      builder
+      excon (~> 0.38)
+      formatador (~> 0.2)
+      mime-types
+      net-scp (~> 1.1)
+      net-ssh (>= 2.1.3)
+    fog-ecloud (0.0.2)
+      fog-core
+      fog-xml
+    fog-json (1.0.0)
+      multi_json (~> 1.0)
+    fog-profitbricks (0.0.1)
+      fog-core
+      fog-xml
+      nokogiri
+    fog-radosgw (0.0.3)
+      fog-core (>= 1.21.0)
+      fog-json
+      fog-xml (>= 0.0.1)
+    fog-riakcs (0.1.0)
+      fog-core
+      fog-json
+      fog-xml
+    fog-sakuracloud (1.0.0)
+      fog-core
+      fog-json
+    fog-serverlove (0.1.1)
+      fog-core
+      fog-json
+    fog-softlayer (0.4.1)
+      fog-core
+      fog-json
+    fog-storm_on_demand (0.1.0)
+      fog-core
+      fog-json
+    fog-terremark (0.0.4)
+      fog-core
+      fog-xml
+    fog-vmfusion (0.0.1)
+      fission
+      fog-core
+    fog-voxel (0.0.2)
+      fog-core
+      fog-xml
+    fog-xml (0.1.1)
+      fog-core
+      nokogiri (~> 1.5, >= 1.5.11)
     font-awesome-sass (4.3.1)
       sass (~> 3.2)
     formatador (0.2.5)
@@ -231,11 +318,13 @@ GEM
       i18n
       term-ansicolor
       terminal-table
+    inflecto (0.0.2)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
       has_scope (~> 0.6.0.rc)
       railties (>= 3.2, < 5)
       responders
+    ipaddress (0.8.0)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -273,6 +362,7 @@ GEM
     metaclass (0.0.4)
     method_source (0.8.2)
     mime-types (2.4.3)
+    mini_magick (4.1.0)
     mini_portile (0.6.2)
     minitest (5.5.1)
     minitest-around (0.3.1)
@@ -300,6 +390,9 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.11.0)
     nenv (0.2.0)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.2)
     netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -457,6 +550,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uniform_notifier (1.7.0)
     vcr (2.9.3)
     warden (1.2.3)
       rack (>= 1.0)
@@ -484,6 +578,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (~> 3.3.3)
   browser
+  bullet
   bundler-audit
   byebug
   capybara-webkit
@@ -496,6 +591,7 @@ DEPENDENCIES
   dotenv-rails
   email_validator
   flutie
+  fog
   font-awesome-sass (~> 4.3.0)
   guard-livereload
   guard-minitest
@@ -509,6 +605,7 @@ DEPENDENCIES
   lograge
   mail_interceptor
   meta_request
+  mini_magick
   minitest-around
   minitest-rails-capybara
   minitest-reporters
