@@ -39,6 +39,17 @@ module Jumpstart
 
     config.active_job.queue_adapter = :delayed_job
 
+    # Setup live previews for mailers with dummy data
+    config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
+
+    unless Rails.env.test?
+      log_level = String(ENV["LOG_LEVEL"] || "debug").upcase
+      config.logger = Logger.new(STDOUT)
+      config.logger.level = Logger.const_get(log_level)
+      config.log_level = log_level
+      config.lograge.enabled = true # see lograge section below...
+    end
+
   end
 
 end
