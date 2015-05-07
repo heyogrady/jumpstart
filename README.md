@@ -1,6 +1,8 @@
 # jumpstart
 Rails starter template
 
+[![Circle CI](https://circleci.com/gh/heyogrady/jumpstart/tree/master.svg?style=svg)](https://circleci.com/gh/heyogrady/jumpstart/tree/master)
+
 [![Code Climate](https://codeclimate.com/github/heyogrady/jumpstart/badges/gpa.svg)](https://codeclimate.com/github/heyogrady/jumpstart)
 
 [![Test Coverage](https://codeclimate.com/github/heyogrady/jumpstart/badges/coverage.svg)](https://codeclimate.com/github/heyogrady/jumpstart/coverage)
