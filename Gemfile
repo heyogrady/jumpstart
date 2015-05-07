@@ -23,6 +23,7 @@ gem "devise", "3.4.1" # for authentication
 gem "devise-async", github: "mhfs/devise-async" # send devise emails in bg
 gem "email_validator" # for email validation
 gem "flutie" # for page_title and body_class view helpers
+gem "fog", require: false # for handling s3
 gem "font-awesome-sass", "~> 4.3.0" # use font-awesome
 gem "i18n-tasks"
 # gem "intercom-rails" # tracking user behavior
@@ -33,6 +34,7 @@ gem "handy" # collection of handy tools
 gem "honeybadger" # for error tracking
 gem "lograge" # shortens format of rails request logs onto a single line
 gem "mail_interceptor" # intercepts outgoing emails in nonproduction environment
+gem "mini_magick" # for resizing images
 # gem "newrelic_rpm" # monitor app performance
 gem "normalize-rails", "~> 3.0.0"
 gem "pg" # database
@@ -50,7 +52,7 @@ gem "yaml_dump", github: "vanboom/yaml_dump" # dump db records to yaml files
 
 group :development do
   gem "better_errors" # better rails error messages
-  # gem "bullet" # notify of db queries that can be improved
+  gem "bullet" # notify of db queries that can be improved
   gem "guard-livereload", require: false # changed files = autoreloaded browser
   gem "guard-minitest" # automatically run tests
   gem "guard-rubocop" # use rubocop with guard

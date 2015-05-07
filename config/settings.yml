@@ -1,4 +1,5 @@
 common:
+  asset_host: http://127.0.0.1:3000
   aws_s3:
     access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
     secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
