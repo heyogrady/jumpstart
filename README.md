@@ -1,7 +1,7 @@
 # jumpstart
 Rails starter template
 
-[![Circle CI](https://circleci.com/gh/bigbinary/wheel.png?style=badge)](https://circleci.com/gh/bigbinary/wheel)
+
 
 #### Setup
 
@@ -49,7 +49,3 @@ replace all occurrences of `Jumpstart` with `Chainsaw`.
 - Easy to generate "test coverage".
 - Content compression via [Rack::Deflater](https://github.com/rack/rack/blob/master/lib/rack/deflater.rb).
 
-
-#### Brought to you by
-
-[![BigBinary logo](http://bigbinary.com/assets/common/logo.png)](http://BigBinary.com)
