@@ -20,7 +20,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  line_item:
+    canceled_description: (Canceled) Subscription to Jumpstart
+    plan_description: Subscription to %{plan_name}
+
   mailers:
     subscription:
+      subscription_receipt:
+        subject: "[Jumpstart] Your receipt"
+      upcoming_payment_notification:
+        subject: "[Jumpstart] Jumpstart is about to charge for your subscription"
       welcome_to_jumpstart:
         subject: Welcome to Jumpstart!
+
+  shared:
+    subscription:
+      name: Jumpstart
