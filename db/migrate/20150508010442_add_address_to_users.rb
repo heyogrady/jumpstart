@@ -8,6 +8,8 @@ class AddAddressToUsers < ActiveRecord::Migration
     add_column :users, :state, :string
     add_column :users, :zip_code, :string
     add_column :users, :country, :string
+    add_column :users, :team_id, :integer
+    add_index :users, :team_id
   end
 
 end

@@ -13,7 +13,9 @@ class CreatePlans < ActiveRecord::Migration
       t.boolean :annual, default: false
       t.integer :annual_plan_id
       t.integer :minimum_quantity, default: 1, null: false
+      t.timestamps
     end
+    add_index :plans, :annual_plan_id
   end
 
 end

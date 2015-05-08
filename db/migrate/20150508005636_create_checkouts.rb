@@ -5,6 +5,7 @@ class CreateCheckouts < ActiveRecord::Migration
       t.references :user, index: true, null: false
       t.references :plan, index: true, null: false
       t.string :stripe_coupon_id
+      t.timestamps
     end
     add_foreign_key :checkouts, :users
     add_foreign_key :checkouts, :plans
