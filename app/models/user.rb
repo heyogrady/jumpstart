@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
 
+  delegate :plan, to: :subscription, allow_nil: true
+  delegate :scheduled_for_cancellation_on, to: :subscription, allow_nil: true
+
   before_save :ensure_authentication_token_is_present
 
   def name
