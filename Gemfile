@@ -24,6 +24,7 @@ gem "devise-async", github: "mhfs/devise-async" # send devise emails in bg
 gem "email_validator" # for email validation
 gem "flutie" # for page_title and body_class view helpers
 gem "fog", require: false # for handling s3
+gem "friendly_id", "~> 5.1.0"
 gem "font-awesome-sass", "~> 4.3.0" # use font-awesome
 gem "i18n-tasks"
 # gem "intercom-rails" # tracking user behavior

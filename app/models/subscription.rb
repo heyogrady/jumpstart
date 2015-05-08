@@ -46,8 +46,54 @@ class Subscription < ActiveRecord::Base
     update_column(:deactivated_on, Time.zone.today)
   end
 
+  def change_plan(sku:)
+    write_plan(sku: sku)
+    change_stripe_plan(sku: sku)
+  end
+
+  def write_plan(sku:)
+    update_features do
+      self.plan = Plan.find_by!(sku: sku)
+      save!
+      track_updated
+    end
+  end
+
+  def change_stripe_plan(sku:)
+    subscription = stripe_customer.subscriptions.first
+    subscription.plan = sku
+    subscription.save
+  end
+
+  def change_quantity(new_quantity)
+    subscription = stripe_customer.subscriptions.first
+    subscription.plan = plan.sku
+    subscription.quantity = new_quantity
+    subscription.save
+  end
+
   def deliver_welcome_email
     SubscriptionMailer.welcome_to_jumpstart(user).deliver_now
+  end
+
+  def has_access_to?(feature)
+    active? && plan.has_feature?(feature)
+  end
+
+  def team?
+    team.present?
+  end
+
+  def last_change
+    Stripe::Charge.all(count: 1, customer: stripe_customer_id).first
+  end
+
+  def owner?(other_user)
+    user == other_user
+  end
+
+  def next_payment_amount_in_dollars
+    next_payment_amount / 100
   end
 
   private
@@ -56,8 +102,47 @@ class Subscription < ActiveRecord::Base
     where(deactivated_on: start_time...end_time)
   end
 
+  def self.active
+    where(deactivated_on: nil)
+  end
+
   def self.recent
     where("created_at > ?", 24.hours.ago)
+  end
+
+  def update_features
+    old_plan = plan
+    yield
+    new_plan = plan
+    update_feature_fulfillmetns(old_plan, new_plan)
+  end
+
+  def update_feature_fulfillments(old_plan, new_plan)
+    feature_fulfillment = FeatureFulfillment.new(
+      new_plan: new_plan,
+      old_plan: old_plan,
+      user: user
+    )
+    feature_fulfillment.fulfill_gained_features
+    feature_fulfillment.unfulfill_lost_features
+  end
+
+  def track_updated
+    user_for_analytics_tracking.each do |user|
+      Analytics.new(user).track_updated
+    end
+  end
+
+  def users_for_analytics_tracking
+    if team
+      team.users
+    else
+      [user]
+    end
+  end
+
+  def stripe_customer
+    Stripe::Customer.retrieve(stripe_customer_id)
   end
 
 end
