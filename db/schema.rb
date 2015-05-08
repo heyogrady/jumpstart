@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507231109) do
+ActiveRecord::Schema.define(version: 20150508010442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20150507231109) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+
+  create_table "checkouts", force: :cascade do |t|
+    t.integer "user_id",          null: false
+    t.integer "plan_id",          null: false
+    t.string  "stripe_coupon_id"
+  end
+
+  add_index "checkouts", ["plan_id"], name: "index_checkouts_on_plan_id", using: :btree
+  add_index "checkouts", ["user_id"], name: "index_checkouts_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0
@@ -93,10 +102,19 @@ ActiveRecord::Schema.define(version: 20150507231109) do
     t.string   "authentication_token"
     t.string   "profile_image"
     t.string   "stripe_customer_id",     default: "",         null: false
+    t.string   "organization"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.string   "country"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "checkouts", "plans"
+  add_foreign_key "checkouts", "users"
   add_foreign_key "subscriptions", "users"
 end

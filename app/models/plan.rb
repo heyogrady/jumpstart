@@ -5,6 +5,7 @@ class Plan < ActiveRecord::Base
   PROFESSIONAL_SKU = "professional"
   THE_WEEKLY_ITERATION_SKU = "the-weekly-iteration"
 
+  has_many :checkouts
   has_many :subscriptions, as: :plan
   belongs_to :annual_plan, class_name: "Plan"
 
