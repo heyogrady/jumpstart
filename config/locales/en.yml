@@ -36,3 +36,10 @@ en:
   shared:
     subscription:
       name: Jumpstart
+
+  subscriptions:
+    flashes:
+      cancel:
+        success: We're sorry to see you go. You will have access to all the features of your plan until the end of your current billing cycle.
+      discount:
+        success: You've switched to a discounted subscription! Congrats.
