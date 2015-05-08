@@ -1,10 +1,4 @@
-class Mailer < ActionMailer::Base
-
-  layout 'mailer'
-
-  default from: Settings.mailer.default_from_email
-
-  default_url_options[:host] = Settings.host
+class Mailer < BaseMailer
 
   def contact_us_notification(contact)
     @email = contact.email
@@ -12,9 +6,12 @@ class Mailer < ActionMailer::Base
     @body  = contact.body
     subject = "Contact us message from #{@email}"
 
-    mail(to: Settings.support_email, from: @email,  subject: subject) do |format|
+    mail(
+      to: Settings.support_email,
+      from: @email,
+      subject: subject
+    ) do |format|
       format.html
     end
-  end
 
 end
