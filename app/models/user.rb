@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :profile_image, ProfileImageUploader
 
+  belongs_to :team
   has_many :subscriptions, dependent: :destroy
 
   validates :first_name, :last_name, :email, presence: true

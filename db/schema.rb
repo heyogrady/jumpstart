@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150508010442) do
+ActiveRecord::Schema.define(version: 20150508014517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,13 @@ ActiveRecord::Schema.define(version: 20150508010442) do
 
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
+  create_table "teams", force: :cascade do |t|
+    t.string  "name",            null: false
+    t.integer "subscription_id", null: false
+  end
+
+  add_index "teams", ["subscription_id"], name: "index_teams_on_subscription_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",         null: false
     t.string   "encrypted_password",     default: "",         null: false
@@ -117,4 +124,5 @@ ActiveRecord::Schema.define(version: 20150508010442) do
   add_foreign_key "checkouts", "plans"
   add_foreign_key "checkouts", "users"
   add_foreign_key "subscriptions", "users"
+  add_foreign_key "teams", "subscriptions"
 end

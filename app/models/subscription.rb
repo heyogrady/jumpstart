@@ -2,6 +2,7 @@ class Subscription < ActiveRecord::Base
 
   belongs_to :plan, polymorphic: true
   belongs_to :user
+  has_one :team, dependent: :destroy
 
   delegate :name, to: :plan, prefex: true
   delegate :stripe_customer_id, to: :user
