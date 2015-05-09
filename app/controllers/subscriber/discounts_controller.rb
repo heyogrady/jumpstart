@@ -7,7 +7,7 @@ class Subscriber::DiscountsController < ApplicationController
     ).switch_to_discounted_annual_plan
 
     redirect_to(
-      my_account_path,
+      profile_path,
       notice: t("subscriptions.flashes.discount.success")
     )
   end
