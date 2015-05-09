@@ -11,6 +11,7 @@ gem "bootstrap-sass", "~> 3.3.3" # use bootstrap3
 # gem "refills" # components & patterns based on Bourbon, Neat and Bitters
 
 gem "activeadmin", github: "activeadmin" # admin framework
+gem "airbrake" # for error tracking
 gem "analytics-ruby", "~> 2.0.0", require: "segment/analytics" # segment.io
 gem "arel"
 gem "autoprefixer-rails" # for CSS vendor prefixes
@@ -32,7 +33,6 @@ gem "jbuilder", "~> 1.2" # for building JSON
 gem "jquery-rails"
 gem "haml-rails" # haml as templating engine
 gem "handy" # collection of handy tools
-gem "honeybadger" # for error tracking
 gem "lograge" # shortens format of rails request logs onto a single line
 gem "mail_interceptor" # intercepts outgoing emails in nonproduction environment
 gem "mini_magick" # for resizing images

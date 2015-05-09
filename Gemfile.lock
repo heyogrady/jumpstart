@@ -69,6 +69,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    airbrake (4.1.0)
+      builder
+      multi_json
     analytics-ruby (2.0.12)
     ansi (1.5.0)
     arbre (1.0.3)
@@ -302,7 +305,6 @@ GEM
     highline (1.7.2)
     hike (1.2.3)
     hitimes (1.2.2)
-    honeybadger (2.0.11)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
@@ -572,6 +574,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  airbrake
   analytics-ruby (~> 2.0.0)
   arel
   autoprefixer-rails
@@ -601,7 +604,6 @@ DEPENDENCIES
   guard-rubocop
   haml-rails
   handy
-  honeybadger
   i18n-tasks
   jbuilder (~> 1.2)
   jquery-rails

@@ -18,7 +18,7 @@ class SubscriptionUpcomingInvoiceUpdater
   def upcoming_invoice_for(stripe_customer_id)
     Stripe::Invoice.upcoming(customer: stripe_customer_id)
   rescue Stripe::InvalidRequestError => error
-    notify_honeybadger(error)
+    notify_airbrake(error)
     nil
   end
 
@@ -44,9 +44,9 @@ class SubscriptionUpcomingInvoiceUpdater
     )
   end
 
-  def notify_honeybadger(error)
+  def notify_airbrake(error)
     unless error_is_because_user_has_no_upcoming_invoice?(error)
-      Honeybadger.notify(error)
+      Airbrake.notify(error)
     end
   end
 

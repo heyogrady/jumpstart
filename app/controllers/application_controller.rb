@@ -4,9 +4,29 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :set_honeybadger_context
   before_action :set_device_type
   before_action :set_layout_carrier
+
+  protected
+
+  def must_be_admin
+    unless current_user_is_admin?
+      flash[:error] = "you do not have permission to view that page"
+      redirect_to root_url
+    end
+  end
+
+  def current_user_is_admin?
+    current_user && current_user.admin?
+  end
+
+  def current_team
+    current_user.team
+  end
+
+  def current_user_has_access_to?(feature)
+    current_user && current_user.has_access_to?(feature)
+  end
 
   private
 
@@ -20,12 +40,6 @@ class ApplicationController < ActionController::Base
 
   def set_device_type
     request.variant = :phone if browser.mobile?
-  end
-
-  def set_honeybadger_context
-    hash = { uuid: request.uuid }
-    hash.merge!(user_id: current_user.id, user_email: current_user.email) if current_user
-    Honeybadger.context hash
   end
 
   def set_layout_carrier
