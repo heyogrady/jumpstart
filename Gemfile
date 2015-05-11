@@ -18,6 +18,7 @@ gem "autoprefixer-rails" # for CSS vendor prefixes
 gem "binding_of_caller" # interactive prompt in error messages
 gem "browser" # for variants support
 gem "carrierwave" # for handling file uploads
+gem "country_select" # for automatic country select with simple_form
 gem "delayed_job_active_record" # for background job processing
 gem "delayed_job_web", ">= 1.2.0" # web interface for delayed job
 gem "devise", "3.4.1" # for authentication
@@ -46,6 +47,7 @@ gem "simple_form" # forms made easy for rails
 gem "sprockets-rails", "3.0.0.beta1"
 gem "sprockets-strict-mode" # use "strict mode" in JavaScript
 gem "stripe", "~> 1.15.0" # charging customers
+gem "stripe_event" # Stripe webhook integration
 gem "twilio-ruby" # phone and SMS services
 gem "uglifier", ">= 1.0.3"
 gem "unicorn", group: [:staging, :production] # staging & production server
