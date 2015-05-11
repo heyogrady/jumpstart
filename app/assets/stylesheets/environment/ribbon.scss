@@ -1,9 +1,18 @@
-body.orange_ribbon {
-  &:before {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 4px;
-    background: orangered;
+.environment-banner {
+  font-size: 12.8px;
+  line-height: 20px;
+  text-align: center;
+
+  $dev-green: #008000;
+  $upcase-red: #FF4856;
+
+  &.development {
+    background: lighten($dev-green, 10%);
+    color: lighten($dev-green, 70%);
+  }
+
+  &.staging {
+    background: lighten($upcase-red, 10%);
+    color: lighten($upcase-red, 70%);
   }
 }
