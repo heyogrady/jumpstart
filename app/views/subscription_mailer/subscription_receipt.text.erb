@@ -1,0 +1,10 @@
+Hi!
+
+You were just charged <%= number_to_currency @amount %> for Jumpstart.
+
+You can view the invoice for this month at
+<%= subscriber_invoice_url(@stripe_invoice_id) %>
+
+
+Thanks for subscribing!
+Jumpstart

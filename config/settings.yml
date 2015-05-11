@@ -20,7 +20,7 @@ common:
       port: 587
       authentication: plain
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
-  segmentio_write_key: <%= ENV['SEGMENTIO_WRITE_KEY'] %>
+  segmentio_write_key: BJbG3LZ42JVAxSpi5Rq5g3woCEOUCpix
   subject_prefix_for_outgoing_emails: JUMPSTART
   support_email:
     support@example.com

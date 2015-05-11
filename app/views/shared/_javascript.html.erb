@@ -1,0 +1,14 @@
+<%= javascript_include_tag "application_desktop" %>
+
+<% if analytics? %>
+  <%= render 'shared/analytics' %>
+<% end %>
+
+<%= yield :javascript %>
+
+<% if Rails.env.test? || Rails.env.cucumber? %>
+  <%= javascript_tag do %>
+    jQuery.fx.off = true;
+    $.ajaxSetup({ async: false });
+  <% end %>
+<% end %>

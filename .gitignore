@@ -1,10 +1,10 @@
 !.keep
+.env
 .idea
 *.DS_Store
 *.swo
 *.swp
 /.bundle
-/.env
 /config/database.yml
 /coverage/*
 /db/*.sqlite3

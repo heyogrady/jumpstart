@@ -12,7 +12,8 @@
     = stylesheet_link_tag "application_desktop", media: "all"
     / <link rel="icon" href="/favicon.ico" type="image/x-icon">
     / <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  %body{class: "#{@layout_carrier.class_for_body}"}
+  %body
+    = render "shared/environment_banner"
     .navbar.navbar-default.navbar-static-top{role: "navigation"}
       .container
         .navbar-header
@@ -29,7 +30,6 @@
         .col-sm-12
           = render 'shared/bootstrap_flash'
           = yield
-    %footer
-      / for footer
+    = render("shared/footer")
     / Placed at the end of the document so the pages load faster
-    = javascript_include_tag "application_desktop"
+    = render "shared/javascript"

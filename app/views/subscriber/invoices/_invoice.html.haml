@@ -1,0 +1,9 @@
+%tr
+  %td.number
+    = link_to(invoice.number, subscriber_invoice_path(invoice.stripe_invoice_id))
+  %td.date
+    = invoice.date.to_s(:short_date)
+  %td.total
+    = number_to_currency(invoice.total)
+  %td.balance
+    = number_to_currency(invoice.balance)

@@ -1,0 +1,5 @@
+%section.plan{class: "#{popular(plan)}", data_sku: "#{plan.sku}"}
+  %h3= plan.name
+  = render grid_partial_for(plan)
+  .price= plan_price(plan)
+  = choose_plan_link(plan)

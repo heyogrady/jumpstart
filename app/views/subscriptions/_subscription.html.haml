@@ -1,0 +1,17 @@
+%li.subscription
+  - if subscription.active?
+    %p
+      %strong= subscription.plan.name
+      %br
+      Active since
+      = subscription.created_at.to_s(:simple)
+    - if subscription.scheduled_for_cancellation?
+      %p
+        = t("subscriptions.cancellation_scheduled_on", date: subscription.scheduled_for_cancellation_on.to_s(:simple))
+  - else
+    %p 
+      Cancelled on
+      = subscription.deactivated_on.to_s(:simple)
+
+  = render("subscriptions/management", subscription: subscription)
+

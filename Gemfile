@@ -11,12 +11,14 @@ gem "bootstrap-sass", "~> 3.3.3" # use bootstrap3
 # gem "refills" # components & patterns based on Bourbon, Neat and Bitters
 
 gem "activeadmin", github: "activeadmin" # admin framework
+gem "airbrake" # for error tracking
 gem "analytics-ruby", "~> 2.0.0", require: "segment/analytics" # segment.io
 gem "arel"
 gem "autoprefixer-rails" # for CSS vendor prefixes
 gem "binding_of_caller" # interactive prompt in error messages
 gem "browser" # for variants support
 gem "carrierwave" # for handling file uploads
+gem "country_select" # for automatic country select with simple_form
 gem "delayed_job_active_record" # for background job processing
 gem "delayed_job_web", ">= 1.2.0" # web interface for delayed job
 gem "devise", "3.4.1" # for authentication
@@ -24,6 +26,7 @@ gem "devise-async", github: "mhfs/devise-async" # send devise emails in bg
 gem "email_validator" # for email validation
 gem "flutie" # for page_title and body_class view helpers
 gem "fog", require: false # for handling s3
+gem "friendly_id", "~> 5.1.0"
 gem "font-awesome-sass", "~> 4.3.0" # use font-awesome
 gem "i18n-tasks"
 # gem "intercom-rails" # tracking user behavior
@@ -31,7 +34,6 @@ gem "jbuilder", "~> 1.2" # for building JSON
 gem "jquery-rails"
 gem "haml-rails" # haml as templating engine
 gem "handy" # collection of handy tools
-gem "honeybadger" # for error tracking
 gem "lograge" # shortens format of rails request logs onto a single line
 gem "mail_interceptor" # intercepts outgoing emails in nonproduction environment
 gem "mini_magick" # for resizing images
@@ -45,6 +47,7 @@ gem "simple_form" # forms made easy for rails
 gem "sprockets-rails", "3.0.0.beta1"
 gem "sprockets-strict-mode" # use "strict mode" in JavaScript
 gem "stripe", "~> 1.15.0" # charging customers
+gem "stripe_event" # Stripe webhook integration
 gem "twilio-ruby" # phone and SMS services
 gem "uglifier", ">= 1.0.3"
 gem "unicorn", group: [:staging, :production] # staging & production server

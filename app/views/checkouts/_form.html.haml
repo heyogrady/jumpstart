@@ -1,0 +1,63 @@
+= simple_form_for(checkout, url: checkouts_path(checkout.plan), html: { method: "post" }) do |form|
+  = hidden_field_tag("coupon_id")
+  - unless user_signed_in?
+    = form.input(:first_name)
+    = form.input(:last_name)
+    = form.input(:email)
+    = form.input(:password)
+
+  = link_to("Need an address on your receipt?", "#collapseAddressFields", data: { toggle: "collapse" })
+
+  .collapse#collapseAddressFields
+    = render("users/address_fields", form: form)
+
+  %fieldset#billing-information
+    %h3 Secure Credit Card Payment
+    #credit-card-icons
+      = image_tag("icons/visa.png")
+      = image_tag("icons/master.png")
+      = image_tag("icons/american_express.png")
+      = image_tag("icons/discover.png")
+    .payment-errors
+    .form-group#checkout_cc_input.stripe
+      %label{for: "card-number"} Card Number
+      %input#card-number.card-number.form-control{type: "text", size: 20, autocomplete: "off"}
+    .form-group#checkout_expiration_input.stripe
+      %label Expiration
+      .row
+        .col-xs-6
+          %select#date_month.form-control.card-expiry-month{name: "date[month]"}
+            %option{value: ""} Month
+            %option{value: "1"} 1 - January
+            %option{value: "2"} 2 - February
+            %option{value: "3"} 3 - March
+            %option{value: "4"} 4 - April
+            %option{value: "5"} 5 - May
+            %option{value: "6"} 6 - June
+            %option{value: "7"} 7 - July
+            %option{value: "8"} 8 - August
+            %option{value: "9"} 9 - September
+            %option{value: "10"} 10 - October
+            %option{value: "11"} 11 - November
+            %option{value: "12"} 12 - December
+        .col-xs-6
+          %select#date_year.form-control.card-expiry-year{name: "date[year]"}
+            %option{value: ""} Year
+            %option{value: "2015"} 2015
+            %option{value: "2016"} 2016
+            %option{value: "2017"} 2017
+            %option{value: "2018"} 2018
+            %option{value: "2019"} 2019
+            %option{value: "2020"} 2020
+            %option{value: "2021"} 2021
+            %option{value: "2022"} 2022
+            %option{value: "2023"} 2023
+            %option{value: "2024"} 2024
+            %option{value: "2025"} 2025
+    .form-group#checkout_cvc_input.stripe
+      %label{for: "card-cvc"} CVC
+      %input#card-cvc.card-cvc.form-control{type: "text", size: 4, autocomplete: "off"}
+  %fieldset.actions
+    = form.button :submit, "Submit Payment - #{submit_amount(checkout)}".html_safe, class: "btn btn-success btn-block"
+
+= render partial: "shared/stripe"

@@ -1,0 +1,32 @@
+%article.discount-offer{style: "margin-bottom: 60px;"}
+  %h3 
+    Stop. You can take
+    = "#{@cancellation_alternative.discount_percentage_vs_current_plan_annualized}%"
+    off your Jumpstart subscription right now.
+  %p.lead
+    We understand you're thinking about canceling, but we really don't want
+    to have to lock you out of all the great stuff we've got in the works.
+  %p.lead
+    How about this instead: click the link below and we'll move you to a
+    %strong heavily-discounted
+    annual plan. How heavy? How about
+    %strong= "#{@cancellation_alternative.discount_percentage_vs_current_plan_annualized}% off?"
+  %p.lead
+    We'll bill you
+    = "$#{@cancellation_alternative.discount_plan_price}"
+    today, and you won't have to pay another dime for an entire year. That's like
+    getting all of Jumpstart for only
+    = "$#{@cancellation_alternative.discount_plan_price / 12}"
+    per month.
+  %p.lead
+    This is a great choice if you
+    %strong don't have enough time
+    to get everything you want out of Jumpstart. There's no rush to get your
+    money's worth, isnce you've got an entire year (plus we'll be adding some
+    great stuff in that time).
+  %p.lead
+    = button_to(t("subscriptions.accept_discounted_annual_subscription"), [:subscriber, :discount], class: "btn btn-success btn-lg")
+  %small
+    You'll be billed
+    = "$#{@cancellation_alternative.discount_plan_price}"
+    immediately.

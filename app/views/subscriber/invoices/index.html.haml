@@ -1,0 +1,10 @@
+%h1 Invoices
+%table.table.table-striped
+  %thead
+    %tr
+      %th Number
+      %th Date
+      %th Total
+      %th Balance
+  %tbody
+    = render(partial: "invoice", collection: @invoices)

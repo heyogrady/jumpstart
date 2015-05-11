@@ -1,0 +1,64 @@
+.row{style: "padding-top: 10px;"}
+  .col-md-4
+    .panel.panel-danger
+      .panel-heading
+        %h3.text-center
+          LITE
+      .panel-body.text-center
+        %p.lead{style: "font-size:40px;"}
+          %strong
+            $9/month
+      %ul.list-group.list-group-flush.text-center
+        %li.list-group-item
+          %i.icon-ok.text-danger
+          Personal use
+        %li.list-group-item
+          %i.icon-ok.text-danger
+          Unlimited projects
+        %li.list-group-item
+          %i.icon-ok.text-danger
+          24/7 support
+      .panel-footer
+        = link_to("Sign up", new_checkout_path(plan: primary), class: "btn btn-lg btn-block btn-danger")
+  .col-md-4
+    .panel.panel-info
+      .panel-heading
+        %h3.text-center
+          STANDARD
+      .panel-body.text-center
+        %p.lead{style: "font-size:40px;"}
+          %strong
+            $29/month
+      %ul.list-group.list-group-flush.text-center
+        %li.list-group-item
+          %i.icon-ok.text-danger
+          Personal use
+        %li.list-group-item
+          %i.icon-ok.text-danger
+          Unlimited projects
+        %li.list-group-item
+          %i.icon-ok.text-danger
+          24/7 support
+      .panel-footer
+        = link_to("Sign up", new_checkout_path(plan: primary), class: "btn btn-lg btn-block btn-danger")
+  .col-md-4
+    .panel.panel-success
+      .panel-heading
+        %h3.text-center
+          PROFESSIONAL
+      .panel-body.text-center
+        %p.lead{style: "font-size:40px;"}
+          %strong
+            $79/month
+      %ul.list-group.list-group-flush.text-center
+        %li.list-group-item
+          %i.icon-ok.text-danger
+          Personal use
+        %li.list-group-item
+          %i.icon-ok.text-danger
+          Unlimited projects
+        %li.list-group-item
+          %i.icon-ok.text-danger
+          24/7 support
+      .panel-footer
+        = link_to("Sign up", new_checkout_path(plan: primary), class: "btn btn-lg btn-block btn-danger")
