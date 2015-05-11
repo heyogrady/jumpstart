@@ -13,5 +13,6 @@ class Mailer < BaseMailer
     ) do |format|
       format.html
     end
+  end
 
 end
