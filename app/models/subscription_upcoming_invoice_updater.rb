@@ -8,7 +8,7 @@ class SubscriptionUpcomingInvoiceUpdater
     @subscriptions.each do |subscription|
       if subscription.stripe_customer_id.present?
         upcoming_invoice = upcoming_invoice_for(subscription.stripe_customer_id)
-        upcoming_next_payment_information(subscription, upcoming_invoice)
+        update_next_payment_information(subscription, upcoming_invoice)
       end
     end
   end
@@ -33,7 +33,7 @@ class SubscriptionUpcomingInvoiceUpdater
   def update_next_payment_information_from_upcoming_invoice(subscription, upcoming_invoice)
     subscription.update!(
       next_payment_amount: upcoming_invoice.total,
-      next_payment_on: Time.zone.at(upcoming_invoice.period.end)
+      next_payment_on: Time.zone.at(upcoming_invoice.period_end)
     )
   end
 

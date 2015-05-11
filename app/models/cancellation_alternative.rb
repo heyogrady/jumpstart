@@ -9,7 +9,7 @@ class CancellationAlternative
     @current_plan != @discounted_plan
   end
 
-  def discounted_percentage_vs_current_plan_annualized
+  def discount_percentage_vs_current_plan_annualized
     discount_percentage_for(
       new_price: discount_plan_price,
       current_price: current_annual_price_in_dollars

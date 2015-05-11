@@ -6,7 +6,8 @@ class Checkout < ActiveRecord::Base
     city
     country
     email
-    name
+    first_name
+    last_name
     organization
     password
     state
@@ -53,7 +54,7 @@ class Checkout < ActiveRecord::Base
     if create_stripe_subscription && save
       self.stripe_subscription_id = stripe_subscription.id
       update_stripe_customer_id
-      plan.fullfill(self, user)
+      plan.fulfill(self, user)
       send_receipt
     end
   end

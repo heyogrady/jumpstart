@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150508221201) do
+ActiveRecord::Schema.define(version: 20150509233240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20150508221201) do
     t.integer  "minimum_quantity",  default: 1,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "includes_team",     default: false, null: false
   end
 
   add_index "plans", ["annual_plan_id"], name: "index_plans_on_annual_plan_id", using: :btree

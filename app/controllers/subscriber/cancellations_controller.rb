@@ -17,7 +17,7 @@ class Subscriber::CancellationsController < ApplicationController
       subscription: current_user.subscription,
       reason: cancellation_params[:reason]
     )
-    @cancellation_alternative = Cancellation.new(
+    @cancellation_alternative = CancellationAlternative.new(
       current_plan: current_user.subscription.plan,
       discounted_plan: Plan.discounted_annual
     )

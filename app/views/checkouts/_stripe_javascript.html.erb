@@ -1,0 +1,39 @@
+<script type="text/javascript">
+  Stripe.setPublishableKey('<%= STRIPE_PUBLIC_KEY %>');
+
+  function stripeResponseHandler(status, response) {
+    if (response.error) {
+      // re-enable the submit button
+      $('fieldset.actions input').removeAttr("disabled");
+      // show the errors on the form
+      $(".payment-errors").html(response.error.message);
+    } else {
+      var form$ = $("#new_checkout");
+      // token contains id, last4, and card type
+      var token = response['id'];
+      // insert the token into the form so it gets submitted to the server
+      form$.append("<input type='hidden' name='checkout[stripe_token]' value='" + token + "' />");
+      // and submit
+      form$.get(0).submit();
+    }
+  }
+
+  $(document).ready(function() {
+    $("#new_checkout").submit(function(event) {
+      // disable the submit button to prevent repeated clicks
+      $('fieldset.actions input').prop("disabled", true);
+      <% unless Rails.env.test? %>
+        // createToken returns immediately
+        // the supplied callback submits the form if there are no errors
+        Stripe.createToken({
+          number: $('.card-number').val(),
+          cvc: $('.card-cvc').val(),
+          exp_month: $('.card-expiry-month').val(),
+          exp_year: $('.card-expiry-year').val()
+        }, stripeResponseHandler);
+        return false; // submit from callback
+      <% end %>
+      return true;
+    });
+  });
+</script>

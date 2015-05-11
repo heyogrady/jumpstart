@@ -20,6 +20,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  checkout:
+    flashes:
+      success: Thank you for subscribing to %{name}. We will email you your receipt shortly.
+      already_subscribed: You are already subscribed. You can change your plan.
+      plan_not_found: We have a new subscription plan for you.
+  layouts:
+    app_name: "Jumpstart"
+    meta_description: "A Rails starter template to get that prototype up and running faster."
   line_item:
     canceled_description: (Canceled) Subscription to Jumpstart
     plan_description: Subscription to %{plan_name}
@@ -38,6 +46,17 @@ en:
       name: Jumpstart
 
   subscriptions:
+    accept_discounted_annual_subscription: Yes! I want to save $$$ and keep going
+    cancellation_scheduled_on: Scheduled for cancellation on %{date}
+    change_plan: Change plan
+    choose_plan: Switch Plan
+    confirm_cancel: Yes, cancel my subscription
+    confirm_cancel_reject_deal: Cancel my subscription
+    current_plan_html: <p class="current-plan">This is your current plan</p>
+    discount:
+      forever: "%{final_price}"
+      once: "%{final_price} the first month, then %{full_price}"
+      repeating: "%{final_price} for %{duration_in_months} months, then %{full_price}"
     flashes:
       cancel:
         success: We're sorry to see you go. You will have access to all the features of your plan until the end of your current billing cycle.
@@ -47,3 +66,5 @@ en:
         success: You've switched to a discounted subscription! Congrats.
       update:
         success: You have successfully updated your subscription credit card information.
+    reason: Why have you decided to leave?
+    reason_explanation: This information will help us make Jumpstart better for future members.

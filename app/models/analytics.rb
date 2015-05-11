@@ -1,5 +1,7 @@
 class Analytics
 
+  include AnalyticsHelper
+
   attr_accessor :user
   class_attribute :backend
   self.backend = AnalyticsRuby
@@ -24,6 +26,15 @@ class Analytics
   def track_user_sign_in
     identify
     track(event: "Signed In User")
+  end
+
+  def track_updated
+    backend.identify(user_id: user.id, traits: identify_hash(user))
+  end
+
+  def track_cancelled(reason)
+    identify
+    track(event: "Cancelled", properties: { reason: reason, email: user.email })
   end
 
   private

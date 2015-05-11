@@ -46,7 +46,7 @@ class Cancellation
 
   def cancel_at_period_end
     Subscription.transaction do
-      stripe_customer.subscription.first.delete(at_period_end: true)
+      stripe_customer.subscriptions.first.delete(at_period_end: true)
       record_scheduled_cancellation_date(stripe_customer)
       track_cancelled
     end

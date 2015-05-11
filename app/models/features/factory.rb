@@ -3,11 +3,8 @@ module Features
   class Factory
 
     GENERIC_FEATURES = %w(
-      forum
-      shows
-      trails
     )
-    FULFILLABLE_FEATURES = %w(mentor repositories)
+    FULFILLABLE_FEATURES = %w()
     ALL_FEATURES = GENERIC_FEATURES + FULFILLABLE_FEATURES
 
     def initialize(user:)

@@ -1,4 +1,4 @@
-class SendCheckoutReceiptEmailJob < Struck.new(:checkout_id)
+class SendCheckoutReceiptEmailJob < Struct.new(:checkout_id)
 
   def self.enqueue(checkout_id)
     Delayed::Job.enqueue(new(checkout_id))

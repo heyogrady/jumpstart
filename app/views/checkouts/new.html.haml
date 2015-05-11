@@ -1,0 +1,13 @@
+.row{style: "padding-top:20px;"}
+  .col-sm-9
+    = render("checkouts/form", checkout: @checkout)
+  .col-sm-3
+    %dl
+      %dt
+        %p Terms and Conditions
+          
+      %dd
+        %p If you're not happy, just let us know within 30 days and we'll refund your money. It's as simple as that.
+
+- content_for :javascript do
+  = render("checkouts/stripe_javascript")

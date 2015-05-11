@@ -1,0 +1,9 @@
+%h4{style: "margin-bottom: 20px;"}
+  Or, continue canceling
+
+= simple_form_for(@cancellation, url: [:subscriber, :cancellation], html: { class: "" }) do |form|
+  = form.input(:reason, as: :text, label: t("subscriptions.reason"), hint: t("subscriptions.reason_explanation"), required: true)
+  - if @cancellation_alternative.can_switch_to_discounted_plan?
+    = form.button(:submit, t("subscriptions.confirm_cancel_reject_deal"), class: "btn btn-danger text-uppercase")
+  - else
+    = form.button(:submit, t("subscriptions.confirm_cancel"), class: "btn btn-danger text-uppercase")

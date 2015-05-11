@@ -114,7 +114,7 @@ class Subscription < ActiveRecord::Base
     old_plan = plan
     yield
     new_plan = plan
-    update_feature_fulfillmetns(old_plan, new_plan)
+    update_feature_fulfillments(old_plan, new_plan)
   end
 
   def update_feature_fulfillments(old_plan, new_plan)
@@ -128,7 +128,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def track_updated
-    user_for_analytics_tracking.each do |user|
+    users_for_analytics_tracking.each do |user|
       Analytics.new(user).track_updated
     end
   end

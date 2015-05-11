@@ -16,7 +16,7 @@ class SubscriptionsController < ApplicationController
 
   def update
     current_user.subscription.change_plan(sku: params[:plan_id])
-    redirect_to root,
+    redirect_to profile_path,
                 notice: I18n.t("subscriptions.flashes.change.success")
   end
 

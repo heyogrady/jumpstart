@@ -1,0 +1,21 @@
+%section#annual-subscription-subject.subject
+  %h1 Get two free months of Jumpstart
+  %h2 Switch to annual billing and commit to long-term success
+
+%h4 Annual Billing
+
+%p
+  If you'd like to join us for the long haul, we're happy to offer you annual
+  billing
+%p
+  %strong Annual billing benefits:
+%ul
+  %li
+    2 months free! If you upgrade, you'll get 12 months of Jumpstart for the
+    price of 10. That's a 17% discount on what you'd pay on monthly billing
+  %li You'll have one fewer monthly expense to plan for and catagorize.
+  %li
+    You'll be helping to support Jumpstart, allowing us to invest heavily in
+    producting new features for you
+
+= button_to("Switch to annual billing", subscription_path(plan_id: @annual_plan_sku), method: "put", class: "btn btn-success"

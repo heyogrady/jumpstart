@@ -1,0 +1,23 @@
+%section.plans
+  .inner
+    %header.audience
+      %p
+      - plans.each do |plan|
+        %p{class: "#{popular(plan)}"}= plan.short_description
+    %nav.features
+      %ol
+        %li.feature
+          %a{href: "#personal_coach"} Personal coach
+        %li.feature
+          %a{href: "#coding_exercies"} Coding exercies
+        %li.feature
+          %a{href: "#app_source_code"} App source code
+        %li.feature
+          %a{href: "#video_tutorials"} Video tutorials
+        %li.feature
+          %a{href: "#community_forum"} Community forum
+        %li.feature
+          %a{href: "#weekly_iteration"} The Weekly Iteration
+      .teams-pricing
+        = link_to("Team pricing", teams_path)
+    = render plans

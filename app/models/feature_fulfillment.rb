@@ -20,7 +20,7 @@ class FeatureFulfillment
   attr_reader :feature_factory, :plan_comparer
 
   def gained_features
-    plan_comparer.featured_gained.map do |feature_string|
+    plan_comparer.features_gained.map do |feature_string|
       feature.factory.new(feature_string)
     end
   end
