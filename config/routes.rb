@@ -38,18 +38,13 @@ Jumpstart::Application.routes.draw do
     resource :subscription, only: [:new, :edit, :update]
   end
 
-  unauthenticated do
-    as :user do
-      root to: "devise/sessions#new", as: :unauthenticated_root
-    end
-  end
-
   draw :api
   draw :stripe
 
-  root "home#index"
+  root "home#show"
 
   resource :credit_card, only: [:update]
 
+  get "dashboard" => "home#index", as: :dashboard
   get "join" => "subscriptions#new", as: :join
 end
