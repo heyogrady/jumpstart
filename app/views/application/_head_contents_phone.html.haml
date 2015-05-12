@@ -1,0 +1,13 @@
+%meta{charset: "utf-8"}
+%title= raw [content_for(:page_title), t("layouts.app_name")].compact.uniq.join(" | ")
+= render("layouts/stylesheets_phone")
+%link{rel: "icon", href: "/favicon.ico", type: "image/x-icon"}
+%link{rel: "shortcut icon", href: "/favicon.ico", type: "image/x-icon"}
+%meta{http_equiv: "Description", name: "Description", content: "#{yield(:meta_description).presence || t("layouts.meta_description")}"}
+%meta{content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+%meta{:content => "IE=Edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+%meta{http_equiv: "Keywords", name: "Keywords", content: "#{keywords(yield :meta_keywords)}"}
+= open_graph_tags
+= csrf_meta_tags
+= render("layouts/ie_shiv")
+= yield :head
