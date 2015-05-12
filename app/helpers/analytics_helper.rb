@@ -23,7 +23,7 @@ module AnalyticsHelper
       "Intercom" => {
         userHash: OpenSSL::HMAC.hexdigest(
           "sha256",
-          ENV["INTERCOM_API_SECRET"],
+          Settings.intercom.api_secret,
           user.id.to_s
         )
       }

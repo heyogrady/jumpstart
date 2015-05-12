@@ -1,0 +1,7 @@
+!!!
+%html{lang: "en"}
+  %head{prefix: "og: http://ogp.me/ns#"}
+    = render("application/head_contents")
+  %body{class: "#{body_class} #{yield (:additional_body_classes)}"}
+    = yield
+    = render("shared/javascript")

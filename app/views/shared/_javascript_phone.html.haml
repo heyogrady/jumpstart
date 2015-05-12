@@ -1,0 +1,12 @@
+= javascript_include_tag "application_phone"
+
+= if analytics?
+  = render("shared/analytics")
+
+= yield(:javascript)
+
+- if Rails.env.test? || Rails.env.cucumber?
+  = javascript_tag do
+    :javascript
+      jQuery.fx.off = true;
+      $.ajaxSetup({ async: false });

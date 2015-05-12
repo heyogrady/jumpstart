@@ -1,24 +1,15 @@
 !!!
 %html{lang: "en"}
-  %head
+  %head{prefix: "og: http://ogp.me/ns#"}
     = render("application/head_contents")
   %body{class: "#{body_class} #{yield (:additional_body_classes)}"}
-    = render "shared/environment_banner"
-    .navbar.navbar-default.navbar-static-top{role: "navigation"}
-      .container
-        .navbar-header
-          %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
-            %span.sr-only Toggle navigation
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.navbar-brand{href: "/"} Jumpstart
-        .navbar-collapse.collapse
-          = render 'shared/nav'
+    = render("shared/environment_banner")
+    = render("shared/navigation/navbar")
     .container.page
       .row
         .col-sm-12
-          = render "shared/bootstrap_flash"
+          = render("shared/bootstrap_flash")
           = yield
+    = yield(:outside)
     = render("shared/footer")
     = render("shared/javascript")
