@@ -21,6 +21,16 @@ common:
       authentication: plain
   secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
   segmentio_write_key: BJbG3LZ42JVAxSpi5Rq5g3woCEOUCpix
+  social:
+    facebook:
+      key: abcd
+      secret: abcd
+    linked_in:
+      key: abcd
+      secret: abcd
+    twitter:
+      key: abcd
+      secret: abcd
   subject_prefix_for_outgoing_emails: JUMPSTART
   support_email:
     support@example.com
@@ -63,6 +73,16 @@ staging:
       port: 587
       authentication: plain
       enable_starttls_auto: true
+  social:
+    facebook:
+      key: <%= ENV["FACEBOOK_KEY"] %>
+      secret: <%= ENV["FACEBOOK_SECRET"] %>
+    linked_in:
+      key: <%= ENV["LINKED_IN_KEY"] %>
+      secret: <%= ENV["LINKED_IN_SECRET"] %>
+    twitter:
+      key: <%= ENV["TWITTER_KEY"] %>
+      secret: <%= ENV["TWITTER_SECRET"] %>
   support_email:
     support@example.com
   url_with_port: <%= heroku_url %>
@@ -80,6 +100,16 @@ production:
       port: 587
       authentication: plain
       enable_starttls_auto: true
+  social:
+    facebook:
+      key: <%= ENV["FACEBOOK_KEY"] %>
+      secret: <%= ENV["FACEBOOK_SECRET"] %>
+    linked_in:
+      key: <%= ENV["LINKED_IN_KEY"] %>
+      secret: <%= ENV["LINKED_IN_SECRET"] %>
+    twitter:
+      key: <%= ENV["TWITTER_KEY"] %>
+      secret: <%= ENV["TWITTER_SECRET"] %>
   support_email:
     support@example.com
   url_with_port: http://jumpstart.com

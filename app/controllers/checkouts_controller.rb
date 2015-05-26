@@ -15,7 +15,6 @@ class CheckoutsController < ApplicationController
 
   def create
     @checkout = build_checkout(checkout_params)
-
     if @checkout.fulfill
       session.delete(:coupon)
       sign_in_and_redirect

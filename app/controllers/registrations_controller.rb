@@ -2,6 +2,18 @@ class RegistrationsController < Devise::RegistrationsController
 
   before_action :load_resource, only: [:edit_password, :update_password]
 
+  def create
+    super
+    if resource.save
+      @checkout = build_checkout
+      if @checkout.fulfill
+        flash[:notice] = "Your 30 day free trial has begun."
+      else
+        flash[:error] = "Error initializing trial."
+      end
+    end
+  end
+
   def edit_password
     respond_with resource
   end
@@ -20,6 +32,15 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
+  def build_checkout
+    plan = Plan.find_by(sku: "standard")
+    user = current_user
+    plan.checkouts.build(
+      user: user,
+      email: user.email
+    )
+  end
 
   def sign_up_params
     resource_params.permit(:email, :password, :password_confirmation, :first_name, :last_name)

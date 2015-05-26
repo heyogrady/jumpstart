@@ -39,6 +39,11 @@ gem "mail_interceptor" # intercepts outgoing emails in nonproduction environment
 gem "mini_magick" # for resizing images
 # gem "newrelic_rpm" # monitor app performance
 gem "normalize-rails", "~> 3.0.0"
+gem "omniauth"
+gem "omniauth-facebook"
+gem "omniauth-google"
+gem "omniauth-linkedin"
+gem "omniauth-twitter"
 gem "pg" # database
 gem "rack-timeout", group: [:staging, :production] # abort long requests
 gem "rails_12factor", group: [:staging, :production] # for logging in heroku
