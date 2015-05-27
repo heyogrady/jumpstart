@@ -1,0 +1,7 @@
+standard:
+  sku: standard
+  name: Standard Plan
+  price_in_dollars: 29
+  short_description: The that gives you the best bang for your buck.
+  description: A long description.
+  featured: true

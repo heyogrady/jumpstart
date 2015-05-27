@@ -2,24 +2,39 @@ require "test_helper"
 
 class RegistrationsControllerTest < ActionController::TestCase
 
+  fixtures :plans
+
   setup do
     request.env["devise.mapping"] = Devise.mappings[:user]
   end
 
-  def test_successfull_user_registration
+  def test_successful_user_registration
+    stub_stripe_create_customer_request
+
     assert_difference("User.count") do
-      post :create, { user: { email: "nancy@test.example.com",
-                              first_name: "Nancy",
-                              last_name: "Smith",
-                              password: "welcome",
-                              password_confirmation: "welcome" } }
+      post :create, {
+        user: {
+          email: "nancy@test.example.com",
+          first_name: "Nancy",
+          last_name: "Smith",
+          password: "welcome",
+          password_confirmation: "welcome"
+        }
+      }
     end
     assert_redirected_to root_path
   end
 
   def test_required_parameters
     assert_no_difference("User.count") do
-      post :create, {user: {email: "steve@example.com", password: "welcome", password_confirmation: "welcome"}}
+      post :create, {
+        user: {
+          first_name: "Steve",
+          last_name: "Smith",
+          password: "welcome",
+          password_confirmation: "welcome"
+        }
+      }
     end
 
     assert_response :success
@@ -65,6 +80,13 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
     nancy.reload
     assert_equal nancy.first_name, valid_user_data[:first_name]
+  end
+
+  def stub_stripe_create_customer_request
+    stub_request(:post, "https://api.stripe.com/v1/customers").
+      with(:body => {"description"=>"nancy@test.example.com", "email"=>"nancy@test.example.com"},
+           :headers => { 'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Authorization'=>'Bearer sk_test_VnDYa71zaDELvFZeHx8rKDJz', 'Content-Length'=>'67', 'Content-Type'=>'application/x-www-form-urlencoded', 'Stripe-Version'=>'2014-09-08', 'User-Agent'=>'Stripe/v1 RubyBindings/1.15.0', 'X-Stripe-Client-User-Agent'=>'{"bindings_version":"1.15.0","lang":"ruby","lang_version":"2.2.2 p95 (2015-04-13)","platform":"x86_64-darwin14","publisher":"stripe","uname":"Darwin Patricks-MacBook-Pro.local 14.3.0 Darwin Kernel Version 14.3.0: Mon Mar 23 11:59:05 PDT 2015; root:xnu-2782.20.48~5/RELEASE_X86_64 x86_64"}' }).
+      to_return(:status => 200, :body => "", :headers => {})
   end
 
 end

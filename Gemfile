@@ -41,9 +41,8 @@ gem "mini_magick" # for resizing images
 gem "normalize-rails", "~> 3.0.0"
 gem "omniauth"
 gem "omniauth-facebook"
-gem "omniauth-google"
+gem "omniauth-google-oauth2"
 gem "omniauth-linkedin"
-gem "omniauth-twitter"
 gem "pg" # database
 gem "rack-timeout", group: [:staging, :production] # abort long requests
 gem "rails_12factor", group: [:staging, :production] # for logging in heroku

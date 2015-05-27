@@ -11,8 +11,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
             sign_in_and_redirect @user, event: :authentication
             set_flash_message(:notice, :success, kind: "#{provider}".capitalize) if is_navigational_format?
           else
-            flash[:error] = "Error starting trial subscription."
-            redirect_to new_user_registration_url
+            sign_in_and_redirect @user, event: :authentication
+            flash[:danger] = "Error starting trial subscription."
           end
         else
           session["devise.#{provider}_data"] = env["omniauth.auth"]
@@ -22,7 +22,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     }
   end
 
-  [:facebook, :google, :linked_in, :twitter].each do |provider|
+  [:facebook, :google_oauth2, :linkedin].each do |provider|
     provides_callback_for provider
   end
 
