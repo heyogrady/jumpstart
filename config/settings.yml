@@ -54,6 +54,9 @@ test:
     - adam@example.com
   mailer:
     delivery_method: :test
+  stripe:
+    publishable_key: pk_test_UVDD9uXz999X4VKe79Z66oqU
+    secret_key: sk_test_VnDYa71zaDELvFZeHx8rKDJz
 
 staging:
   <% heroku_url = ENV['HEROKU_URL'] || 'http://jumpstart-staging.herokuapp.com' %>
