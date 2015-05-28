@@ -1,0 +1,4 @@
+%h1 Add Email
+= simple_form_for(current_user, as: "user", url: finish_signup_path(current_user), html: {role: "form"}) do |form|
+  = form.input(:email, autofocus: true, value: "", input_html: { class: "form-control input-lg" }, placeholder: "Example: email@me.com")
+  = form.button(:submit, "Continue", class: "btn btn-primary")

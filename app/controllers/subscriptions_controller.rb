@@ -15,9 +15,17 @@ class SubscriptionsController < ApplicationController
   end
 
   def update
-    current_user.subscription.change_plan(sku: params[:plan_id])
-    redirect_to profile_path,
-                notice: I18n.t("subscriptions.flashes.change.success")
+    if current_user.subscription.change_plan(sku: params[:plan_id])
+      redirect_to(
+        profile_path,
+        notice: I18n.t("subscriptions.flashes.change.success")
+      )
+    else
+      redirect_to(
+        profile_path,
+        notice: "Please add a card."
+      )
+    end
   end
 
 end

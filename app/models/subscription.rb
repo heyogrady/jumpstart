@@ -47,6 +47,10 @@ class Subscription < ActiveRecord::Base
   end
 
   def change_plan(sku:)
+    if stripe_customer.sources.all(object: "card").data.empty?
+      return false
+    end
+
     write_plan(sku: sku)
     change_stripe_plan(sku: sku)
   end

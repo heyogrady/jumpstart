@@ -1,6 +1,8 @@
 = simple_form_for(checkout, url: checkouts_path(checkout.plan), html: { method: "post" }) do |form|
   = hidden_field_tag("coupon_id")
-  - unless user_signed_in?
+  - if user_signed_in?
+    = form.hidden_field(:email, value: current_user.email)
+  - else
     = form.input(:first_name)
     = form.input(:last_name)
     = form.input(:email)

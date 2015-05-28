@@ -1,8 +1,13 @@
 class User < ActiveRecord::Base
 
+  include ActionView::Helpers
+
+  TEMP_EMAIL_PREFIX = "change@me"
+  TEMP_EMAIL_REGEX = /\Achange@me/
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :omniauthable, :registerable,
          :recoverable, :trackable, :validatable, :rememberable, :async
 
   mount_uploader :profile_image, ProfileImageUploader
@@ -10,13 +15,46 @@ class User < ActiveRecord::Base
   belongs_to :team
   has_many :subscriptions, dependent: :destroy
 
-  validates :first_name, :last_name, :email, presence: true
+  validates :email, presence: true
   validates :email, uniqueness: true
+  validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
 
   delegate :plan, to: :subscription, allow_nil: true
   delegate :scheduled_for_cancellation_on, to: :subscription, allow_nil: true
 
   before_save :ensure_authentication_token_is_present
+
+  def self.find_for_oauth(auth, signed_in_resource=nil)
+    identity = Identity.find_for_oauth(auth)
+    user = signed_in_resource ? signed_in_resource : identity.user
+    if user.nil?
+      email = auth.info.email
+      user = User.where(email: email).first if email
+
+      if user.nil?
+
+        name = auth.extra.raw_info.name
+        if name
+          first_name, *last_name = name.split
+          last_name = last_name.join(" ")
+        end
+
+        user = User.new(
+          first_name: first_name,
+          last_name: last_name,
+          email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+          password: Devise.friendly_token[0, 20]
+        )
+        user.save!
+      end
+    end
+
+    if identity.user != user
+      identity.user = user
+      identity.save!
+    end
+    user
+  end
 
   def self.with_active_subscription
     includes(subscriptions: :plan, team: { subscription: :plan }).
@@ -26,6 +64,10 @@ class User < ActiveRecord::Base
   def self.subscriber_count
     Subscription.active.joins(team: :users).count +
       Subscription.active.includes(:team).where(teams: { id: nil }).count
+  end
+
+  def email_verified?
+    self.email && self.email !~ TEMP_EMAIL_REGEX
   end
 
   def name
@@ -148,6 +190,20 @@ class User < ActiveRecord::Base
       compact.
       reject(&:active?).
       max_by(&:deactivated_on)
+  end
+
+  def parse_first_name(full_name)
+    if full_name
+      first, *last = full_name.split
+      first
+    end
+  end
+
+  def parse_last_name(full_name)
+    if full_name
+      first, *last = full_name.split
+      last.join(" ")
+    end
   end
 
 end
