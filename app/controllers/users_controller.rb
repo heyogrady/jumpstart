@@ -15,23 +15,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def finish_signup
-    @user = User.find(params[:id])
-    if request.patch? && params[:user]
-      if @user.update(user_params)
-        sign_in(@user, bypass: true)
-        @checkout = build_checkout
-        if @checkout.fulfill
-          redirect_to(root_url, notice: "Successfully signed up for 30 day trial.")
-        else
-          flash[:error] = "Error initializing trial."
-        end
-      else
-        flash[:error] = "Could not save email address. Please try again."
-      end
-    end
-  end
-
   private
 
   def build_checkout

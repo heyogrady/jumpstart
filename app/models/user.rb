@@ -46,6 +46,13 @@ class User < ActiveRecord::Base
           password: Devise.friendly_token[0, 20]
         )
         user.save!
+
+        plan = Plan.find_by(sku: "standard")
+        checkout = plan.checkouts.build(
+          user: user,
+          email: user.email
+        )
+        checkout.fulfill
       end
     end
 

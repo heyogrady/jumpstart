@@ -25,7 +25,6 @@ require "webmock/minitest"
 
 if Rails.application.config.colorize_logging
   require "minitest/reporters"
-  require "minitest/pride"
   MiniTest::Reporters.use!
 end
 
@@ -42,4 +41,17 @@ end
 
 class ActionController::TestCase
   include Devise::TestHelpers
+end
+
+require "vcr"
+
+VCR.configure do |c|
+  c.hook_into :webmock
+  c.cassette_library_dir = "test/vcr_cassettes"
+  c.default_cassette_options = {
+    record: :new_episodes,
+    allow_playback_repeats: true
+  }
+  c.debug_logger = STDOUT
+  c.allow_http_connections_when_no_cassette = true
 end

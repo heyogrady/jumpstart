@@ -82,6 +82,27 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_equal nancy.first_name, valid_user_data[:first_name]
   end
 
+  def test_new_subscription_when_user_created
+    VCR.use_cassette("registrations controller user subscribes") do
+      assert_difference("Subscription.count") do
+        post :create, {
+          user: {
+            email: "nancy@test.example.com",
+            first_name: "Nancy",
+            last_name: "Smith",
+            password: "welcome",
+            password_confirmation: "welcome"
+          }
+        }
+      end
+    end
+
+    user = User.find_by(email: "nancy@test.example.com")
+    assert_not_empty user.stripe_customer_id, "No customer ID found"
+  end
+
+  private
+
   def stub_stripe_create_customer_request
     stub_request(:post, "https://api.stripe.com/v1/customers").
       with(:body => {"description"=>"nancy@test.example.com", "email"=>"nancy@test.example.com"},

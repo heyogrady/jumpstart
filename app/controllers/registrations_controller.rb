@@ -6,11 +6,10 @@ class RegistrationsController < Devise::RegistrationsController
     super
     if resource.save
       @checkout = build_checkout
-      if @checkout.fulfill
-        flash[:notice] = "Your 30 day free trial has begun."
-      else
-        flash[:error] = "Error initializing trial."
-      end
+      @checkout.fulfill
+      flash[:notice] = "You are now registered with Jumpstart, and your 30 day free trial has begun."
+    else
+      flash[:error] = "Error created new user."
     end
   end
 
