@@ -17,6 +17,13 @@ GIT
       sass-rails
 
 GIT
+  remote: git://github.com/bigbinary/mail_interceptor.git
+  revision: 3e11921e31e5388ba1af81945e150ce6f87cde9e
+  specs:
+    mail_interceptor (0.0.5)
+      activesupport
+
+GIT
   remote: git://github.com/mhfs/devise-async.git
   revision: f8f61910e6ef54fdc91ebf5088c0594be9dca19c
   specs:
@@ -173,6 +180,8 @@ GEM
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
+    email_prefixer (1.1.0)
+      rails (>= 4.0)
     email_validator (1.5.0)
       activemodel
     erubis (2.7.0)
@@ -365,8 +374,6 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mail_interceptor (0.0.3)
-      activesupport
     meta_request (0.3.4)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
@@ -632,6 +639,7 @@ DEPENDENCIES
   devise (= 3.4.1)
   devise-async!
   dotenv-rails
+  email_prefixer
   email_validator
   flutie
   fog
@@ -646,7 +654,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   lograge
-  mail_interceptor
+  mail_interceptor!
   meta_request
   mini_magick
   minitest-around

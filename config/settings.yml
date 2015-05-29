@@ -49,9 +49,6 @@ development:
     delivery_method: :smtp
 
 test:
-  intercept_and_forward_emails_to:
-    - john@example.com
-    - adam@example.com
   mailer:
     delivery_method: :test
   stripe:
