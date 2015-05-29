@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "2.2.2"
 
-gem "rails", "4.2.0"
+gem "rails", "4.2.1"
 
 gem "bootstrap-sass", "~> 3.3.3" # use bootstrap3
 # gem "bitters" # scaffold application styles
@@ -19,10 +19,12 @@ gem "binding_of_caller" # interactive prompt in error messages
 gem "browser" # for variants support
 gem "carrierwave" # for handling file uploads
 gem "country_select" # for automatic country select with simple_form
+gem "daemons" # for starting Delayed Job background process
 gem "delayed_job_active_record" # for background job processing
 gem "delayed_job_web", ">= 1.2.0" # web interface for delayed job
 gem "devise", "3.4.1" # for authentication
 gem "devise-async", github: "mhfs/devise-async" # send devise emails in bg
+gem "email_prefixer" # adds prefix to the subject in emails
 gem "email_validator" # for email validation
 gem "flutie" # for page_title and body_class view helpers
 gem "fog", require: false # for handling s3
@@ -35,7 +37,7 @@ gem "jquery-rails"
 gem "haml-rails" # haml as templating engine
 gem "handy" # collection of handy tools
 gem "lograge" # shortens format of rails request logs onto a single line
-gem "mail_interceptor" # intercepts outgoing emails in nonproduction environment
+gem "mail_interceptor", github: "bigbinary/mail_interceptor", group: [:development, :staging] # intercepts outgoing emails in nonproduction environment
 gem "mini_magick" # for resizing images
 # gem "newrelic_rpm" # monitor app performance
 gem "normalize-rails", "~> 3.0.0"

@@ -10,6 +10,8 @@ Rails starter template
 #### Setup
 
 ```
+bundle install
+cp config/database.yml.postgresqlapp config/database.yml
 rake setup
 bundle exec rails server
 ```

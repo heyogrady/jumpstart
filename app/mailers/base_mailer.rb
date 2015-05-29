@@ -2,8 +2,8 @@ class BaseMailer < ActionMailer::Base
 
   layout "mailer"
 
-  default from: Settings.mailer.default_from_email
+  default from: Rails.application.secrets.mailer_default_from_email
 
-  default_url_options[:host] = Settings.host
+  default_url_options[:host] = Rails.application.secrets.host
 
 end
