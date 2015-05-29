@@ -36,6 +36,7 @@ gem "haml-rails" # haml as templating engine
 gem "handy" # collection of handy tools
 gem "lograge" # shortens format of rails request logs onto a single line
 gem "mail_interceptor" # intercepts outgoing emails in nonproduction environment
+gem "marginalia" # attaches comments to Active Record queries
 gem "mini_magick" # for resizing images
 # gem "newrelic_rpm" # monitor app performance
 gem "normalize-rails", "~> 3.0.0"
