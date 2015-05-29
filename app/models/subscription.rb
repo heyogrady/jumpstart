@@ -100,6 +100,14 @@ class Subscription < ActiveRecord::Base
     next_payment_amount / 100
   end
 
+  def in_trial?
+    trial_ends_at.present? && trail_ends_at > Time.current
+  end
+
+  def has_credit_card?
+    !card_last_four_digits.blank?
+  end
+
   private
 
   def self.cancelled_within_period(start_time, end_time)

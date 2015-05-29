@@ -26,6 +26,10 @@ class Checkout < ActiveRecord::Base
     :stripe_customer_id,
     :stripe_subscription_id,
     :stripe_token,
+    :card_last_four_digits,
+    :card_type,
+    :card_expires_on,
+    :trial_ends_at,
     *COMMON_ATTRIBUTES
 
   def fulfill
@@ -53,6 +57,7 @@ class Checkout < ActiveRecord::Base
   def create_subscriptions
     if create_stripe_subscription && save
       self.stripe_subscription_id = stripe_subscription.id
+      self.trial_ends_at = stripe_subscription.trial_ends_at
       update_stripe_customer_id
       plan.fulfill(self, user)
       send_receipt

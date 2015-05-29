@@ -60,7 +60,11 @@ class Plan < ActiveRecord::Base
   def fulfill(checkout, user)
     user.create_subscription(
       plan: self,
-      stripe_id: checkout.stripe_subscription_id
+      stripe_id: checkout.stripe_subscription_id,
+      card_last_four_digits: checkout.card_last_four_digits,
+      card_type: checkout.card_type,
+      card_expires_on: checkout.card_expires_on,
+      trial_ends_at: checkout.trial_ends_at
     )
     SubscriptionFulfillment.new(user, self).fulfill
     if includes_team?
