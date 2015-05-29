@@ -19,6 +19,7 @@ gem "binding_of_caller" # interactive prompt in error messages
 gem "browser" # for variants support
 gem "carrierwave" # for handling file uploads
 gem "country_select" # for automatic country select with simple_form
+gem "daemons" # for starting Delayed Job background process
 gem "delayed_job_active_record" # for background job processing
 gem "delayed_job_web", ">= 1.2.0" # web interface for delayed job
 gem "devise", "3.4.1" # for authentication

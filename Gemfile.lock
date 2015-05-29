@@ -626,6 +626,7 @@ DEPENDENCIES
   carrierwave
   codeclimate-test-reporter
   country_select
+  daemons
   delayed_job_active_record
   delayed_job_web (>= 1.2.0)
   devise (= 3.4.1)
