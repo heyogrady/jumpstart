@@ -22,11 +22,15 @@ require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "mocha/mini_test"
 require "webmock/minitest"
+require "minitest/reporters"
 
-if Rails.application.config.colorize_logging
-  require "minitest/reporters"
-  MiniTest::Reporters.use!
-end
+reporter_options = { color: true, slow_count: 10 }
+
+Minitest::Reporters.use!(
+  Minitest::Reporters::DefaultReporter.new(reporter_options),
+  ENV,
+  Minitest.backtrace_filter
+)
 
 class ActiveSupport::TestCase
 
