@@ -1,6 +1,6 @@
 class StripeSubscription
 
-  attr_reader :id
+  attr_reader :id, :trial_ends_at
 
   def initialize(checkout)
     @checkout = checkout
@@ -48,6 +48,12 @@ class StripeSubscription
       description: @checkout.email,
       email: @checkout.email
     )
+    if @checkout.stripe_token
+      card = new_stripe_customer.cards.data.first
+      @checkout.card_last_four_digits = card.last4
+      @checkout.card_type = card.brand
+      @checkout.card_expires_on = convert_expiry_date(card.exp_month, card.exp_year)
+    end
     @checkout.stripe_customer_id = new_stripe_customer.id
   end
 
@@ -59,6 +65,10 @@ class StripeSubscription
       subscription = stripe_customer.subscriptions.first
       subscription_attributes.each { |key, value| subscription[key] = value }
       subscription.save
+    end
+
+    if trial_end_timestamp = subscription.trial_end
+      @trial_ends_at = Time.zone.at(trial_end_timestamp)
     end
 
     @id = subscription.id
@@ -85,6 +95,10 @@ class StripeSubscription
 
   def stripe_customer
     @stripe_customer ||= Stripe::Customer.retrieve(@checkout.stripe_customer_id)
+  end
+
+  def convert_expiry_date(month, year)
+    Date.new(year.to_i, month.to_i, 1)
   end
 
 end

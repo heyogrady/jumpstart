@@ -99,8 +99,15 @@ class User < ActiveRecord::Base
     end
   end
 
-  def create_subscription(plan:, stripe_id:)
-    subscriptions.create(plan: plan, stripe_id: stripe_id)
+  def create_subscription(plan:, stripe_id:, card_last_four_digits:, card_type:, card_expires_on:, trial_ends_at:)
+    subscriptions.create(
+      plan: plan,
+      stripe_id: stripe_id,
+      card_last_four_digits: card_last_four_digits,
+      card_type: card_type,
+      card_expires_on: card_expires_on,
+      trial_ends_at: trial_ends_at
+    )
   end
 
   def has_active_subscription?
