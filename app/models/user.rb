@@ -168,6 +168,12 @@ class User < ActiveRecord::Base
     stripe_customer_id.present?
   end
 
+  def in_trial_without_card?
+    has_active_subscription? &&
+      subscription.has_credit_card? &&
+      subscription.in_trial?
+  end
+
   private
 
   def ensure_authentication_token_is_present

@@ -3,3 +3,6 @@
     = render("shared/navigation/user_is_signed_in")
   - else
     = nav_link 'Sign in', new_session_path(:user)
+
+- if user_signed_in? && current_user.in_trial_without_card?
+  = link_to("Upgrade (#{remaining_in_trial(current_user.subscription)} left)", profile_path, class: "btn btn-primary navbar-btn navbar-right")
