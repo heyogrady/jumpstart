@@ -23,7 +23,7 @@ module AnalyticsHelper
       "Intercom" => {
         userHash: OpenSSL::HMAC.hexdigest(
           "sha256",
-          Settings.intercom.api_secret,
+          Rails.application.secrets.intercom.api_secret,
           user.id.to_s
         )
       }

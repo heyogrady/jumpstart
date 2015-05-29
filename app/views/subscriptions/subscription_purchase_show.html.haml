@@ -2,6 +2,6 @@
 
 %p= "Thank you for purchasing #{@purchaseable.name}."
 - if current_user.inactive_subscription
-  %p= "You stopped subscribing to #{@purchaseable.name} on #{current_user.inactive_subscription.deactivated_on.to_s(:long)}. If you would like to resubscribe, please #{mail_to(Settings.support_email, "contact us")}"
+  %p= "You stopped subscribing to #{@purchaseable.name} on #{current_user.inactive_subscription.deactivated_on.to_s(:long)}. If you would like to resubscribe, please #{mail_to(Rails.application.secrets.support_email, "contact us")}"
 
 = render("subscriptions/aside", purchaseable: @purchaseable, purchase: @purchase)

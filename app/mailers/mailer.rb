@@ -7,7 +7,7 @@ class Mailer < BaseMailer
     subject = "Contact us message from #{@email}"
 
     mail(
-      to: Settings.support_email,
+      to: Rails.application.secrets.support_email,
       from: @email,
       subject: subject
     ) do |format|
