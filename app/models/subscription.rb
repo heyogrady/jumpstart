@@ -101,7 +101,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def in_trial?
-    trial_ends_at.present? && trail_ends_at > Time.current
+    trial_ends_at.present? && trial_ends_at > Time.current
   end
 
   def has_credit_card?
