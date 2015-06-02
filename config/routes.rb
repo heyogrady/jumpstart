@@ -43,7 +43,7 @@ Jumpstart::Application.routes.draw do
 
   root "home#show"
 
-  resource :credit_card, only: [:update]
+  resource :credit_card, only: [:new, :update]
 
   get "dashboard" => "home#index", as: :dashboard
   get "join" => "subscriptions#new", as: :join

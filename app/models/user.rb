@@ -170,8 +170,14 @@ class User < ActiveRecord::Base
 
   def in_trial_without_card?
     has_active_subscription? &&
-      subscription.has_credit_card? &&
+      !subscription.has_credit_card? &&
       subscription.in_trial?
+  end
+
+  def trial_ends_at
+    if has_active_subscription?
+      subscription.trial_ends_at
+    end
   end
 
   private
