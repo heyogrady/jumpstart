@@ -1,5 +1,7 @@
-# jumpstart
-Rails starter template
+# Jumpstart
+A Rails starter template
+
+Amalgamated from BigBinary's [Wheel](http://github.com/bigbinary/wheel), Thoughtbot's [Suspenders](https://github.com/thoughtbot/suspenders) and [Upcase](http://upcase.com) - with Stripe subscription billing out of the box.
 
 [![Circle CI](https://circleci.com/gh/heyogrady/jumpstart/tree/master.svg?style=svg)](https://circleci.com/gh/heyogrady/jumpstart/tree/master)
 
@@ -18,8 +20,9 @@ bundle exec rails server
 
 #### Replace Jumpstart with your project name
 
-Let's say that the project name is `Chainsaw`. Execute the command below to
-replace all occurrences of `Jumpstart` with `Chainsaw`.
+Replace all occurrences of "Jumpstart" with your own project name.
+
+Let's say that the project name is "Chainsaw". Execute the command below:
 
 ```
  perl -e "s/Jumpstart/Chainsaw/g;" -pi $(find . -type f)
@@ -27,29 +30,36 @@ replace all occurrences of `Jumpstart` with `Chainsaw`.
 
 #### Features
 
-- Uses [Bootstrap](http://getbootstrap.com) .
-- rake setup to set sensible sample data including user `sam@example.com` with password `welcome`.
-- Uses [devise](https://github.com/plataformatec/devise) .
-- Heroku ready. Push to heroku and it will work .
-- Built in superadmin feature.
-- Uses modal box to showcase an example of editing information using modal box.
-- Enables __strict mode__ for all JavaScript code.
-- Uses __unicorn__ for staging and production.
-- Uses __thin__ for development and test.
-- A green ribbon at the top for non-production environment.
-- Uses haml for cleaner syntax over erb.
-- No coffeescript. We prefer JavaScript.
-- No turbolinks.
+- Uses [Bootstrap](http://getbootstrap.com)
+- rake setup to set sample data
+- Default admin user: `sam@example.com` with password `welcome`
+- Uses [devise](https://github.com/plataformatec/devise) for authentication
+- Oauth with Facebook, LinkedIn and Google preset - just add keys and secrets
+- Heroku ready
+- Full support for subscription billing with Stripe, including plans, trials, checkouts, cancellations, feature restriction, invoices and email notifications
+- Uses modal box to showcase an example of editing information using modal box
+- Enables __strict mode__ for all JavaScript code
+- Uses __unicorn__ for staging and production
+- Uses __thin__ for development and test
+- A ribbon at the top for non-production environment - green for development, orange for staging
+- Uses haml for cleaner syntax over erb
+- Uses Javascript instead of Coffeescript
+- No Turbolinks
 - Uses [ActiveAdmin](http://activeadmin.info).
-- Uses [DelayedJob](https://github.com/collectiveidea/delayed_job).
-- Intercepts all outgoing emails in non production environment using gem [mail_interceptor](https://github.com/bigbinary/mail_interceptor).
-- Uses [CircleCI](https://circleci.com) for continuous testing.
-- Has a bunch of tests to make it easier to get started with new tests.
-- Uses PostgreSQL.
-- Built in support for [carrierwave](https://github.com/carrierwaveuploader/carrierwave) to easily upload items to s3.
-- Built in support for "variants" so the pages can be customized for tablet or phone easily.
-- Uses [simple_form](https://github.com/plataformatec/simple_form).
-- Built in support for [mandrill](http://how-we-work.bigbinary.com/externalservices/mandrill.html).
-- Easy to generate "test coverage".
-- Content compression via [Rack::Deflater](https://github.com/rack/rack/blob/master/lib/rack/deflater.rb).
+- Uses [DelayedJob](https://github.com/collectiveidea/delayed_job)
+- Intercepts all outgoing emails in non production environment using gem [mail_interceptor](https://github.com/bigbinary/mail_interceptor)
+- Uses [CircleCI](https://circleci.com) for continuous testing
+- Uses [Coveralls](https://coveralls.com) for test coverage metrics
+- Uses [CodeClimate](https://codeclimate.com)
+- Uses [Hound](http://houndci.com) for automated style checking
+- Uses Airbrake for error reporting
+- Has a bunch of tests to make it easier to get started with new tests
+- Uses PostgreSQL
+- Support for Segment.io
+- Support for Twilio
+- Built in support for [carrierwave](https://github.com/carrierwaveuploader/carrierwave) to easily upload items to Amazon S3
+- Built in support for "variants" so the pages can be customized for tablet or phone easily
+- Uses [simple_form](https://github.com/plataformatec/simple_form)
+- Built in support for [Mandrill](http://how-we-work.bigbinary.com/externalservices/mandrill.html)
+- Content compression via [Rack::Deflater](https://github.com/rack/rack/blob/master/lib/rack/deflater.rb)
 
