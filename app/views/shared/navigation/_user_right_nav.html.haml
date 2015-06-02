@@ -5,4 +5,4 @@
     = nav_link 'Sign in', new_session_path(:user)
 
 - if user_signed_in? && current_user.in_trial_without_card?
-  = link_to("Upgrade (#{remaining_in_trial(current_user.subscription)} left)", profile_path, class: "btn btn-primary navbar-btn navbar-right")
+  = link_to("Upgrade (#{days_remaining_in_trial(current_user.subscription)} left)", new_credit_card_path, class: "btn btn-primary navbar-btn navbar-right")

@@ -174,6 +174,12 @@ class User < ActiveRecord::Base
       subscription.in_trial?
   end
 
+  def trial_ends_at
+    if has_active_subscription?
+      subscription.trial_ends_at
+    end
+  end
+
   private
 
   def ensure_authentication_token_is_present

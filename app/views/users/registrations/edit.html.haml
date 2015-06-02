@@ -39,8 +39,6 @@
           = f.button :submit, "Update", class: 'btn btn-primary'
 
 
-      = render "users/credit_card_form"
-
       = simple_form_for(current_user,                                                         |
                         wrapper: :bootstrap3,                                                 |
                         html: { method: :put, class: 'bootstrap-center-form-medium' }) do |f| |
