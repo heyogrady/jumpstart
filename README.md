@@ -9,25 +9,6 @@ Amalgamated from BigBinary's [Wheel](http://github.com/bigbinary/wheel), Thought
 
 [![Coverage Status](https://coveralls.io/repos/heyogrady/jumpstart/badge.svg)](https://coveralls.io/r/heyogrady/jumpstart)
 
-#### Setup
-
-```
-bundle install
-cp config/database.yml.postgresqlapp config/database.yml
-rake setup
-bundle exec rails server
-```
-
-#### Replace Jumpstart with your project name
-
-Replace all occurrences of "Jumpstart" with your own project name.
-
-Let's say that the project name is "Chainsaw". Execute the command below:
-
-```
- perl -e "s/Jumpstart/Chainsaw/g;" -pi $(find . -type f)
-```
-
 #### Features
 
 - Uses [Bootstrap](http://getbootstrap.com)
@@ -63,3 +44,43 @@ Let's say that the project name is "Chainsaw". Execute the command below:
 - Built in support for [Mandrill](http://how-we-work.bigbinary.com/externalservices/mandrill.html)
 - Content compression via [Rack::Deflater](https://github.com/rack/rack/blob/master/lib/rack/deflater.rb)
 
+Setup
+-----
+
+```
+bundle install
+cp config/database.yml.postgresqlapp config/database.yml
+rake setup
+bundle exec rails server
+```
+
+#### Replace Jumpstart with your project name
+
+Replace all occurrences of "Jumpstart" with your own project name.
+
+Let's say that the project name is "Chainsaw". Execute the command below:
+
+```
+ perl -e "s/Jumpstart/Chainsaw/g;" -pi $(find . -type f)
+```
+
+#### Setup Stripe
+
+* Create Stripe Account
+* Add test keys to `secrets.yml`
+* Create default plans:
+  - free
+  - lite
+  - standard
+  - professional
+  - team
+  - annual
+* Add a test endpoint:
+  - Mode: __test__
+  - URL: `<staging-url>/stripe-webhook`
+  - Events: __Select Events__
+    - `invoice.payment_succeeded`
+    - `customer.subscription.updated`
+    - `customer.subscription.deleted`
+* Add live keys as `ENV['STRIPE_PUBLISHABLE_KEY']` and `ENV['STRIPE_PUBLISHABLE_KEY']` on production deployment
+* Add a live endpoint with production url and mode: `live`
