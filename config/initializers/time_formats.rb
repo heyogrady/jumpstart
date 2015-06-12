@@ -8,7 +8,8 @@
   month: "%B",
   invoice: "%y%m%d",
   abbreviated_month: "%b",
-  day_of_month: "%d"
+  day_of_month: "%d",
+  month_year: "%m/%Y"
 }.each do |k, v|
   Date::DATE_FORMATS[k] = v
   Time::DATE_FORMATS[k] = v

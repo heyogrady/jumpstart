@@ -89,6 +89,7 @@ group :test do
   gem "capybara-webkit" # acceptance testing with browser automation
   gem "codeclimate-test-reporter", require: nil # CodeClimate test coverage
   gem "coveralls", require: false # Report test coverage
+  gem "factory_girl_rails" # for setting up ruby objects as test data
   gem "minitest-around" # acceptance testing with browser automation
   gem "minitest-rails-capybara" # high-level acceptance testing with Capybara
   gem "minitest-reporters", require: false # customizable MiniTest output

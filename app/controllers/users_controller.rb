@@ -17,14 +17,6 @@ class UsersController < ApplicationController
 
   private
 
-  def build_checkout
-    plan = Plan.find_by(sku: "standard")
-    plan.checkouts.build(
-      user: @user,
-      email: @user.email
-    )
-  end
-
   def user_params
     params.require(:user).permit(
       :address1,

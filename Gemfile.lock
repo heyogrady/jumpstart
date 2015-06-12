@@ -194,6 +194,11 @@ GEM
     eventmachine (1.0.7)
     excon (0.44.4)
     execjs (2.4.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.8)
@@ -651,6 +656,7 @@ DEPENDENCIES
   dotenv-rails
   email_prefixer
   email_validator
+  factory_girl_rails
   flutie
   fog
   font-awesome-sass (~> 4.3.0)

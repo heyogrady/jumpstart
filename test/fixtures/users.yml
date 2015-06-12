@@ -14,3 +14,4 @@ nancy:
   encrypted_password: '$2a$10$3OF9YyLG6D8P8EqFFdudmeIUtIlnX2usIFYhAJ77pep5y93BLuSuu' #welcome
   reset_password_token: 5h632xrnASsFanDhKQsB7
   authentication_token: 5h632xrnASqFanDhKQsB8
+  stripe_customer_id: cus_6Lwri23fafFu5e
