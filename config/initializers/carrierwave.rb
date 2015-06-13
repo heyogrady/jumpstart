@@ -20,12 +20,12 @@ else
     config.root = Rails.root.join("tmp")
     config.storage = :fog
     config.cache_dir = "carrierwave"
-    config.fog_directory = Rails.application.secrets.aws_s3.bucket_name
+    config.fog_directory = Rails.application.secrets.aws_s3["bucket_name"]
 
     config.fog_credentials = {
       provider: "AWS",
-      aws_access_key_id: Rails.application.secrets.aws_s3.access_key_id,
-      aws_secret_access_key: Rails.application.secrets.aws_s3.secret_access_key,
+      aws_access_key_id: Rails.application.secrets.aws_s3["access_key_id"],
+      aws_secret_access_key: Rails.application.secrets.aws_s3["secret_access_key"],
     }
 
     config.fog_credentials[:region] = "us-west-1" if Rails.env.staging?
