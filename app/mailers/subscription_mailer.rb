@@ -28,5 +28,6 @@ class SubscriptionMailer < BaseMailer
       subject:
         t("mailers.subscription.upcoming_payment_notification.subject")
     )
+  end
 
 end
