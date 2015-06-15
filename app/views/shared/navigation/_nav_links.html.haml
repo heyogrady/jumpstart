@@ -1,5 +1,14 @@
-%ul.nav.navbar-nav
-  = nav_link 'Home', root_path
-  = nav_link 'About', pages_about_path
-  = nav_link 'Contact us', pages_contact_us_path
-= render("shared/navigation/user_right_nav")
+%ul.right.hide-on-med-and-down
+  - if user_signed_in?
+    = render("shared/navigation/user_is_signed_in")
+  - else
+    = nav_link 'Sign in', new_session_path(:user)
+
+- if user_signed_in? && current_user.in_trial_without_card?
+  = link_to("Upgrade (#{days_remaining_in_trial(current_user.subscription)} left)", new_credit_card_path, class: "btn btn-primary navbar-btn navbar-right")
+
+%ul.side-nav#nav-mobile
+  - if user_signed_in?
+    = render("shared/navigation/user_is_signed_in")
+  - else
+    = nav_link 'Sign in', new_session_path(:user)

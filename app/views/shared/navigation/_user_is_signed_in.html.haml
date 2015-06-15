@@ -1,11 +1,31 @@
-%li.dropdown
-  %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+/ %li.dropdown
+/   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+/     = current_user.name
+/     %b.caret
+/   %ul.dropdown-menu
+/     - if super_admin_signed_in?
+/       = nav_link 'Superadmin', superadmin_root_path
+/       %li.divider
+/     = nav_link 'My account', profile_path
+/     = nav_link 'Change password', password_edit_path
+/     = nav_link 'Logout', destroy_user_session_path, false, method: :delete
+
+%li
+  %a.dropdown-button{href: "#!", data: {activates: "sign-in-dropdown"}}
     = current_user.name
-    %b.caret
-  %ul.dropdown-menu
+    %i.mdi-navigation-arrow-drop-down.right
+
+- content_for(:outside) do
+  %ul#sign-in-dropdown.dropdown-content
     - if super_admin_signed_in?
       = nav_link 'Superadmin', superadmin_root_path
       %li.divider
     = nav_link 'My account', profile_path
     = nav_link 'Change password', password_edit_path
     = nav_link 'Logout', destroy_user_session_path, false, method: :delete
+
+/ - content_for(:javascript) do
+/   :javascript
+/     $(document).ready(function() {
+/       $(".dropdown-button").dropdown();
+/     });

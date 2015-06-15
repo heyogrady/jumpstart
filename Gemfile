@@ -4,11 +4,7 @@ ruby "2.2.2"
 
 gem "rails", "4.2.1"
 
-gem "bootstrap-sass", "~> 3.3.3" # use bootstrap3
-# gem "bitters" # scaffold application styles
-# gem "bourbon", "~> 4.2.0" # Sass mixins
-# gem "neat", "~> 1.7.0" # emantic grids
-# gem "refills" # components & patterns based on Bourbon, Neat and Bitters
+gem "materialize-sass"
 
 gem "activeadmin", github: "activeadmin" # admin framework
 gem "airbrake" # for error tracking
