@@ -4,5 +4,3 @@
 require File.expand_path("../config/application", __FILE__)
 
 Jumpstart::Application.load_tasks
-
-task default: "bunder:audit"

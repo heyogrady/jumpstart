@@ -76,7 +76,6 @@ end
 
 group :development, :test do
   gem "awesome_print"
-  gem "bundler-audit", require: false # scans Gemfile for insecure dependencies
   gem "byebug" # for interactively debugging behavior
   gem "dotenv-rails" # or loading environment variables
   gem "pry-rails" # for interactively exploring objects
